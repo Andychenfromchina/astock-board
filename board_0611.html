@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股票池快照 · 2026-06-11</title>
+<style>
+:root{--bg:#faf9f5;--card:#ffffff;--text:#1a1a17;--text2:#6b6a64;--text3:#9a9890;--line:rgba(0,0,0,.12);--surface:#f1efe8;--red:#A32D2D;--redbg:#FCEBEB;--redline:#F09595;--green:#3B6D11;--greenbg:#EAF3DE;--greenline:#97C459;--warnbg:#FAEEDA;--warntext:#854F0B;--infobg:#E6F1FB;--infotext:#185FA5}
+@media (prefers-color-scheme:dark){:root{--bg:#1f1e1b;--card:#2a2926;--text:#f0efe9;--text2:#b3b1a8;--text3:#85837b;--line:rgba(255,255,255,.14);--surface:#34332f;--red:#F09595;--redbg:rgba(226,75,74,.16);--redline:rgba(226,75,74,.45);--green:#97C459;--greenbg:rgba(99,153,34,.16);--greenline:rgba(99,153,34,.45);--warnbg:rgba(239,159,39,.16);--warntext:#FAC775;--infobg:rgba(55,138,221,.16);--infotext:#85B7EB}}
+*{box-sizing:border-box}
+body{margin:0;padding:20px 14px 40px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:19px;font-weight:600;margin:0}
+.sub{font-size:13px;color:var(--text2);margin-top:2px}
+.legend{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--text3);margin-top:8px;flex-wrap:wrap}
+.sec{margin:26px 0 10px;font-size:15.5px;font-weight:600;display:flex;align-items:center;gap:8px}
+.cnt{font-size:11px;padding:2px 9px;border-radius:999px;background:var(--surface);color:var(--text2);font-weight:400}
+.card{background:var(--card);border:.5px solid var(--line);border-radius:12px;padding:14px 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.metric{background:var(--surface);border-radius:10px;padding:12px 14px}
+.metric .lbl{font-size:12px;color:var(--text2)}
+.metric .val{font-size:21px;font-weight:600;margin-top:3px}
+.up{color:var(--red);font-weight:600}
+.down{color:var(--green);font-weight:600}
+.pu{display:inline-block;min-width:72px;text-align:center;font-size:13px;font-weight:600;padding:4px 10px;border-radius:6px;background:#A32D2D;color:#FCEBEB}
+.pd{display:inline-block;min-width:72px;text-align:center;font-size:13px;font-weight:600;padding:4px 10px;border-radius:6px;background:#3B6D11;color:#EAF3DE}
+.bgu{background:var(--redbg);border:.5px solid var(--redline)}
+.bgd{background:var(--greenbg);border:.5px solid var(--greenline)}
+.code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--text3);margin-left:5px}
+.badge{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;background:var(--surface);color:var(--text2);white-space:nowrap}
+.badge.warn{background:var(--warnbg);color:var(--warntext)}
+.badge.dgr{background:var(--redbg);color:var(--red)}
+.badge.info{background:var(--infobg);color:var(--infotext)}
+.banner{display:flex;gap:10px;background:var(--warnbg);border-radius:10px;padding:11px 14px;margin-top:14px;font-size:13.5px;color:var(--warntext)}
+.row{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:.5px solid var(--line);font-size:14px;flex-wrap:wrap}
+.row:first-child{border-top:none}
+.row .nm{width:142px;font-weight:600}
+.note{font-size:12px;color:var(--text2)}
+.price{font-size:24px;font-weight:600}
+.hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.avoid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px 24px}
+.avoid>div{font-size:13px;padding:6px 0;display:flex;align-items:center;gap:8px}
+.avoid .nm2{font-weight:600;width:72px;flex-shrink:0}
+.foot{margin-top:24px;font-size:11.5px;color:var(--text3);line-height:1.7}
+@media (max-width:480px){.row .nm{width:118px}.price{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>A股票池快照</h1>
+<div class="sub">2026-06-11 收盘 · 东财＋腾讯双源核验 · 龙虎榜席位待17:00定时任务终审</div>
+<div class="legend"><span class="pu" style="min-width:0;padding:2px 8px">▲ 涨</span><span class="pd" style="min-width:0;padding:2px 8px">▼ 跌</span><span>A股惯例：红涨绿跌</span></div>
+
+<div class="grid" style="margin-top:14px">
+  <div class="metric bgd"><div class="lbl">上证指数</div><div class="val down">3987.01</div><div style="margin-top:6px"><span class="pd">▼ -0.16%</span></div><div class="note" style="margin-top:6px">尾盘V形修复，未收复4000</div></div>
+  <div class="metric bgu"><div class="lbl">科创50</div><div class="val up">1662.44</div><div style="margin-top:6px"><span class="pu">▲ +0.62%</span></div><div class="note" style="margin-top:6px">唯一收红，半导体设备带动</div></div>
+  <div class="metric"><div class="lbl">昨涨停今日溢价</div><div class="val up">+0.92%</div><div style="margin-top:6px"><span class="badge">中性档 0~+2%</span></div><div class="note" style="margin-top:6px">883900代理口径</div></div>
+  <div class="metric"><div class="lbl">炸板率</div><div class="val">29.3%</div><div style="margin-top:6px"><span class="badge warn">+8.2pp 分歧加剧</span></div><div class="note" style="margin-top:6px">连续&gt;30%即降退潮档</div></div>
+</div>
+
+<div class="banner"><span>⚠️</span><span>一档4票回调第3日，均无「缩量企稳」信号 — <b>买点未到＝不动手</b>。情绪中性、分歧放大：不打板、不接力，仅跟踪主线回调节奏。</span></div>
+
+<div class="sec">一档 · 核心池（巨潮已核真增长）<span class="cnt">4只 · 等回调买点</span></div>
+<div class="grid2">
+  <div class="card bgd">
+    <div class="hd"><span style="font-weight:600">胜宏科技<span class="code">300476</span></span><span class="badge">缩量阴跌</span></div>
+    <div style="margin-top:8px;display:flex;align-items:center;gap:12px"><span class="price down">325.48</span><span class="pd" style="font-size:14px">▼ -1.45%</span></div>
+    <div class="note" style="margin-top:7px">量缩10.4%但盘中320.04创回调新低，企稳证据不足</div>
+  </div>
+  <div class="card bgd">
+    <div class="hd"><span style="font-weight:600">深南电路<span class="code">002916</span></span><span class="badge">缩量阴跌</span></div>
+    <div style="margin-top:8px;display:flex;align-items:center;gap:12px"><span class="price down">376.16</span><span class="pd" style="font-size:14px">▼ -1.80%</span></div>
+    <div class="note" style="margin-top:7px">量缩14.2%、较6/9缩40%，四票中最接近企稳候选</div>
+  </div>
+  <div class="card bgu">
+    <div class="hd"><span style="font-weight:600">中微公司<span class="code">688012</span></span><span class="badge info">板块强弱锚</span></div>
+    <div style="margin-top:8px;display:flex;align-items:center;gap:12px"><span class="price up">303.12</span><span class="pu" style="font-size:14px">▲ +4.85%</span></div>
+    <div class="note" style="margin-top:7px">连续第3日最强，收盘创本轮新高 · 强度≠买点，不追高</div>
+  </div>
+  <div class="card bgd">
+    <div class="hd"><span style="font-weight:600">瑞芯微<span class="code">603893</span></span><span class="badge dgr">放量下跌</span></div>
+    <div style="margin-top:8px;display:flex;align-items:center;gap:12px"><span class="price down">160.08</span><span class="pd" style="font-size:14px">▼ -2.15%</span></div>
+    <div class="note" style="margin-top:7px">量放13.3%且创回调新低158.18，四票最弱，无止跌信号</div>
+  </div>
+</div>
+
+<div class="sec">观察池<span class="cnt">10只 · 升降级待席位终审</span></div>
+<div class="card" style="padding-top:5px;padding-bottom:7px">
+  <div class="row"><span class="nm">雅克科技<span class="code">002409</span></span><span class="pu">▲ +10.00%</span><span style="flex:1" class="note"><span class="badge warn">升档候选 · 核验最优先</span> 2连板封死，封成比≈0.5%明日易分歧</span></div>
+  <div class="row"><span class="nm">有研粉材<span class="code">688456</span></span><span class="pu">▲ +18.12%</span><span style="flex:1" class="note"><span class="badge">机构续买待验</span> 席位修正判例第2日兑现，未触板</span></div>
+  <div class="row"><span class="nm">太极实业<span class="code">600667</span></span><span class="pu">▲ +9.99%</span><span style="flex:1" class="note"><span class="badge">席位待验</span> 涨停封死，存储封测＋IDC双属性</span></div>
+  <div class="row"><span class="nm">江丰电子<span class="code">300666</span></span><span class="pu">▲ +20.00%</span><span style="flex:1" class="note"><span class="badge">回收候选</span> 靶材主线20cm板，涨幅过高等回调</span></div>
+  <div class="row"><span class="nm">南大光电<span class="code">300346</span></span><span class="pu">▲ +8.08%</span><span style="flex:1" class="note"><span class="badge">回收候选</span> 半导体材料主线，自6/9悬空池回收</span></div>
+  <div class="row"><span class="nm">大普微<span class="code">301666</span></span><span class="pu">▲ +1.86%</span><span style="flex:1" class="note"><span class="badge">轻仓观察</span> 新股筹码不稳，只看反弹不重仓</span></div>
+  <div class="row"><span class="nm">华亚智能<span class="code">003043</span></span><span class="pu">▲ +1.72%</span><span style="flex:1" class="note"><span class="badge">持续观察</span> 深市席位质量标杆，机构单席主导</span></div>
+  <div class="row"><span class="nm">宏昌电子<span class="code">603002</span></span><span class="pd">▼ -1.92%</span><span style="flex:1" class="note"><span class="badge">只看不追</span> 调整第2日，盯外资通道是否转卖</span></div>
+  <div class="row"><span class="nm">紫光国微<span class="code">002049</span></span><span class="pd">▼ -2.16%</span><span style="flex:1" class="note"><span class="badge">待右侧确认</span> 低基数周期反弹，6/9自一档下调</span></div>
+  <div class="row"><span class="nm">中科三环<span class="code">000970</span></span><span class="pd">▼ -3.24%</span><span style="flex:1" class="note"><span class="badge dgr">降级候选</span> 未能2连板，磁材加工端资金离场</span></div>
+</div>
+
+<div class="sec">规避池<span class="cnt">11只 · 不参与不眼红</span></div>
+<div class="card" style="padding-top:8px;padding-bottom:8px">
+  <div class="avoid">
+    <div><span class="nm2">麦格米特</span><span class="pd" style="min-width:64px;padding:3px 7px">▼ -4.26%</span><span class="note">北向清仓＋PE614，连跌3日</span></div>
+    <div><span class="nm2">红板科技</span><span class="pd" style="min-width:64px;padding:3px 7px">▼ -6.07%</span><span class="note">机构撤AI下游PCB</span></div>
+    <div><span class="nm2">达实智能</span><span class="pd" style="min-width:64px;padding:3px 7px">▼ -9.94%</span><span class="note">一字跌停，北向减仓确认</span></div>
+    <div><span class="nm2">金安国纪</span><span class="pu" style="min-width:64px;padding:3px 7px">▲ +9.53%</span><span class="note">炸板29次全场之最，诱多坐实</span></div>
+    <div><span class="nm2">和远气体</span><span class="pu" style="min-width:64px;padding:3px 7px">▲ +10.01%</span><span class="note">3连板纯游资局，风险加剧</span></div>
+    <div><span class="nm2">西安奕材</span><span class="pu" style="min-width:64px;padding:3px 7px">▲ +6.78%</span><span class="note">量化对倒虚涨样本，席位待验</span></div>
+    <div><span class="nm2">同宇新材</span><span class="pu" style="min-width:64px;padding:3px 7px">▲ +1.58%</span><span class="note">高位出货形态确认</span></div>
+    <div><span class="nm2">圣泉集团</span><span class="pu" style="min-width:64px;padding:3px 7px">▲ +1.50%</span><span class="note">机构净卖的纯游资局</span></div>
+    <div><span class="nm2">京东方A</span><span class="badge" style="min-width:64px;text-align:center">—</span><span class="note">资金堆涨幅，扣非仅+6.4%</span></div>
+    <div><span class="nm2">天华新能</span><span class="badge" style="min-width:64px;text-align:center">—</span><span class="note">扣非+3554%小基数失真</span></div>
+    <div><span class="nm2">香农芯创</span><span class="badge" style="min-width:64px;text-align:center">—</span><span class="note">扣非+8675%小基数失真</span></div>
+  </div>
+</div>
+
+<div class="foot">数据：东方财富＋腾讯行情双源核验（2026-06-11收盘，零偏差）· 主力净流入为行情商估算口径 · 筛选≠买点，进场前写死止损/止盈/仓位 · 本页面不构成投资建议 · 生成于 2026-06-11 复盘会话</div>
+
+</div>
+</body>
+</html>

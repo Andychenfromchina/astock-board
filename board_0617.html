@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>票池看板静态版 0617 盘中刷新</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#0e131c;color:#e9eef7;font-size:15px;line-height:1.5;padding-bottom:80px}
+.wrap{max-width:720px;margin:0 auto;padding:0 13px}
+header{padding:20px 14px 13px;text-align:center;background:#0b0f17;border-bottom:1px solid #2a323f}
+.kicker{font-size:11px;letter-spacing:2px;color:#f2b347;font-weight:700}
+h1{font-size:21px;font-weight:800;margin-top:5px;color:#dce8ff}
+.date{font-size:12px;color:#8893a5;margin-top:5px}
+.status{display:inline-block;margin-top:11px;padding:6px 13px;border-radius:8px;font-size:12.5px;font-weight:700;background:#13301f;color:#1fbf75;border:1px solid #1c5238}
+.snap{margin:14px 0 4px;background:#171d28;border:1px solid #2a323f;border-left:3px solid #4f9cf9;border-radius:10px;padding:11px 13px}
+.snap .h{font-size:12.5px;font-weight:700;margin-bottom:6px}
+.snap .l{font-size:12.5px;color:#8893a5;margin-top:4px} .snap .l b{color:#e9eef7} .snap .l .w{color:#ff7a45} .snap .l .u{color:#ff5a5f}
+.tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px}
+.tag.red{background:#3a1a1c;color:#ff5a5f} .tag.gold{background:#332708;color:#f2b347} .tag.blue{background:#0e2740;color:#4f9cf9} .tag.gray{background:#23272f;color:#8893a5} .tag.grn{background:#13301f;color:#1fbf75}
+.tier-h{display:flex;align-items:center;gap:9px;margin:20px 0 9px}
+.tier-h .bar{width:5px;height:18px;border-radius:3px} .tier-h .nm{font-size:15.5px;font-weight:800} .tier-h .tag{margin-left:auto}
+.t-up .bar{background:#ff5a5f} .t-gold .bar{background:#f2b347} .t-blue .bar{background:#4f9cf9} .t-faint .bar{background:#5c6675}
+.tnote{font-size:11.5px;color:#5c6675;margin:-3px 2px 9px}
+.stk{background:#171d28;border:1px solid #2a323f;border-radius:11px;margin-bottom:10px;padding:11px 13px}
+.stk.bl-up{border-left:3px solid #ff5a5f} .stk.bl-gold{border-left:3px solid #f2b347} .stk.bl-blue{border-left:3px solid #4f9cf9} .stk.bl-faint{border-left:3px solid #5c6675}
+.l1{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.nm{font-size:15.5px;font-weight:800} .cd{font-size:11px;color:#5c6675;font-weight:600} .th{font-size:11.5px;color:#8893a5} .px{font-size:12px;font-weight:700;color:#ff5a5f}
+.bdg{margin-left:auto;font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px}
+.bdg.pass{background:#13301f;color:#1fbf75} .bdg.passw{background:#332708;color:#f2b347} .bdg.fail{background:#3a1a1c;color:#ff5a5f} .bdg.bl{background:#3a1a1c;color:#ff5a5f} .bdg.hot{background:#3a1a1c;color:#ff5a5f}
+.l2{font-size:12.5px;color:#8893a5;margin-top:5px} .l2 b{color:#e9eef7} .l2 .w{color:#ff7a45}
+.spark{display:flex;gap:4px;margin:9px 0 2px}
+.col{flex:1;display:flex;flex-direction:column;align-items:center}
+.v{font-size:8.5px;font-weight:700;height:12px;line-height:12px}
+.v.up{color:#ff5a5f} .v.dn{color:#1fbf75} .v.na{color:#5c6675}
+.plot{width:100%;height:46px;display:flex;flex-direction:column;border-bottom:1px solid #20262f}
+.uh{height:23px;display:flex;align-items:flex-end;justify-content:center}
+.dh{height:23px;display:flex;align-items:flex-start;justify-content:center;border-top:1px dashed #283040}
+.uh i,.dh i{display:block;width:62%;border-radius:2px 2px 0 0;background:#ff5a5f}
+.dh i{border-radius:0 0 2px 2px;background:#1fbf75}
+.d{font-size:9px;color:#8893a5;margin-top:3px}
+.redline{margin-top:20px;background:#1a1013;border:1px solid #3a1c22;border-radius:11px;padding:14px 15px}
+.redline h3{font-size:14px;color:#ff5a5f;margin-bottom:8px}
+.redline li{list-style:none;font-size:13px;color:#ffc9cc;padding:6px 0 6px 20px;position:relative;border-top:1px solid #2e171b}
+.redline li:first-child{border-top:none} .redline li:before{content:"⛔";position:absolute;left:0;top:6px;font-size:11px} .redline li b{color:#fff}
+footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-height:1.7;border-top:1px solid #2a323f;padding-top:13px}
+</style>
+</head>
+<body>
+<header>
+<div class="kicker">POOL DASHBOARD · STATIC</div>
+<h1>一二三档票池看板</h1>
+<div class="date">走势窗口 6/9–6/17（红涨绿跌·空=未取到）· 行情快照含6/17盘中14:06 · 纯静态离线</div>
+<div class="status">退潮档已解除 · 情绪回暖（6/17涨停75/炸板率28.6%/跌停0/昨涨停溢价+1.89%）</div>
+</header>
+<div class="wrap">
+<div class="snap">
+<div class="h">📊 行情 · 6/17（周三）盘中14:06 <span class="tag grn">半导体链强反弹</span></div>
+<div class="l">上证 <b>4092.07 约+0.00%</b>　深成 <b class="u">15774.41 +0.63%</b>　创业板 <b class="u">4126.29 +0.57%</b>　科创50 <b class="u">1823.92 +3.72%</b><span style="color:#5c6675">（领涨）</span></div>
+<div class="l">半导体设备/PCB/CMP材料/光模块<b>全面反弹</b>，资金回流科技成长；昨涨停今日<b class="u">+1.89%</b>中性偏暖、<b class="u">跌停0家</b>→情绪明显修复</div>
+<div class="l" style="color:#5c6675">最高3板：诺德股份/旗滨集团/光华科技/旭光电子/华正新材/宏昌电子——连板高度仍低，普涨修复非接力升级</div>
+</div>
+
+<div class="tier-h t-up"><span class="bar"></span><span class="nm">一档 · 进攻核心</span><span class="tag red">业绩巨潮已核·真增长创新高</span></div>
+<div class="tnote">⚡6/17半导体链全面反弹：PCB端(深南涨停/胜宏)与半导体端(中微+9%/瑞芯微)集体收复——但已脱离回调低位，追高风险回归，等回踩</div>
+
+<div class="stk bl-up"><div class="l1"><span class="nm">胜宏科技</span><span class="cd">300476</span><span class="th">PCB/AI算力板</span><span class="px">359.5</span><span class="bdg pass">5连阳·收复回调</span></div>
+<div class="spark">
+<div class="col"><div class="v up">+8.82</div><div class="plot"><div class="uh"><i style="height:20px"></i></div><div class="dh"></div></div><div class="d">6/9</div></div>
+<div class="col"><div class="v dn">-3.59</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:8px"></i></div></div><div class="d">6/10</div></div>
+<div class="col"><div class="v dn">-1.45</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:3px"></i></div></div><div class="d">6/11</div></div>
+<div class="col"><div class="v up">+0.53</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">6/12</div></div>
+<div class="col"><div class="v up">+5.28</div><div class="plot"><div class="uh"><i style="height:12px"></i></div><div class="dh"></div></div><div class="d">6/15</div></div>
+<div class="col"><div class="v up">+3.19</div><div class="plot"><div class="uh"><i style="height:7px"></i></div><div class="dh"></div></div><div class="d">6/16</div></div>
+<div class="col"><div class="v up">+1.13</div><div class="plot"><div class="uh"><i style="height:3px"></i></div><div class="dh"></div></div><div class="d">6/17</div></div>
+</div>
+<div class="l2">已收复全部回调、重回6/9高位上方 → <b>强势但远离买点，不追高</b>，等缩量回踩</div></div>
+
+<div class="stk bl-up"><div class="l1"><span class="nm">深南电路</span><span class="cd">002916</span><span class="th">PCB/封装基板</span><span class="px">444.27</span><span class="bdg hot">涨停·历史新高</span></div>
+<div class="spark">
+<div class="col"><div class="v up">+7.12</div><div class="plot"><div class="uh"><i style="height:16px"></i></div><div class="dh"></div></div><div class="d">6/9</div></div>
+<div class="col"><div class="v dn">-3.26</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:7px"></i></div></div><div class="d">6/10</div></div>
+<div class="col"><div class="v dn">-1.80</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:4px"></i></div></div><div class="d">6/11</div></div>
+<div class="col"><div class="v up">+0.89</div><div class="plot"><div class="uh"><i style="height:2px"></i></div><div class="dh"></div></div><div class="d">6/12</div></div>
+<div class="col"><div class="v up">+5.35</div><div class="plot"><div class="uh"><i style="height:12px"></i></div><div class="dh"></div></div><div class="d">6/15</div></div>
+<div class="col"><div class="v up">+1.02</div><div class="plot"><div class="uh"><i style="height:2px"></i></div><div class="dh"></div></div><div class="d">6/16</div></div>
+<div class="col"><div class="v up">+10.00</div><div class="plot"><div class="uh"><i style="height:23px"></i></div><div class="dh"></div></div><div class="d">6/17</div></div>
+</div>
+<div class="l2">6/17封涨停创历史新高 → <b>最强但绝不能追</b>，涨停板即天花板风险，只在大幅回踩后谈</div></div>
+
+<div class="stk bl-up"><div class="l1"><span class="nm">中微公司</span><span class="cd">688012</span><span class="th">半导体刻蚀设备</span><span class="px">348.55</span><span class="bdg pass">设备反弹龙头</span></div>
+<div class="spark">
+<div class="col"><div class="v up">+7.37</div><div class="plot"><div class="uh"><i style="height:17px"></i></div><div class="dh"></div></div><div class="d">6/9</div></div>
+<div class="col"><div class="v up">+1.43</div><div class="plot"><div class="uh"><i style="height:3px"></i></div><div class="dh"></div></div><div class="d">6/10</div></div>
+<div class="col"><div class="v up">+4.85</div><div class="plot"><div class="uh"><i style="height:11px"></i></div><div class="dh"></div></div><div class="d">6/11</div></div>
+<div class="col"><div class="v up">+0.26</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">6/12</div></div>
+<div class="col"><div class="v up">+5.28</div><div class="plot"><div class="uh"><i style="height:12px"></i></div><div class="dh"></div></div><div class="d">6/15</div></div>
+<div class="col"><div class="v dn">-0.31</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">6/16</div></div>
+<div class="col"><div class="v up">+9.26</div><div class="plot"><div class="uh"><i style="height:21px"></i></div><div class="dh"></div></div><div class="d">6/17</div></div>
+</div>
+<div class="l2">6/17 +9.26%领半导体设备反弹、强弱锚转强 → <b>强势确认但已大涨，不追高</b>，回踩观察</div></div>
+
+<div class="stk bl-up"><div class="l1"><span class="nm">瑞芯微</span><span class="cd">603893</span><span class="th">SoC/AIoT芯片</span><span class="px">175.19</span><span class="bdg passw">一档最弱</span></div>
+<div class="spark">
+<div class="col"><div class="v up">+4.01</div><div class="plot"><div class="uh"><i style="height:9px"></i></div><div class="dh"></div></div><div class="d">6/9</div></div>
+<div class="col"><div class="v dn">-3.92</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:9px"></i></div></div><div class="d">6/10</div></div>
+<div class="col"><div class="v dn">-2.15</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:5px"></i></div></div><div class="d">6/11</div></div>
+<div class="col"><div class="v up">+0.27</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">6/12</div></div>
+<div class="col"><div class="v up">+6.39</div><div class="plot"><div class="uh"><i style="height:15px"></i></div><div class="dh"></div></div><div class="d">6/15</div></div>
+<div class="col"><div class="v up">+0.76</div><div class="plot"><div class="uh"><i style="height:2px"></i></div><div class="dh"></div></div><div class="d">6/16</div></div>
+<div class="col"><div class="v up">+1.83</div><div class="plot"><div class="uh"><i style="height:4px"></i></div><div class="dh"></div></div><div class="d">6/17</div></div>
+</div>
+<div class="l2">6/17跟涨仅+1.83%、<span class="w">一档最弱</span>，已收复回调但弹性差 → 不优先，看能否补涨</div></div>
+
+<div class="tier-h t-gold"><span class="bar"></span><span class="nm">二档 · 进攻候选</span><span class="tag gold">预核过闸·待原件终核</span></div>
+
+<div class="stk bl-gold"><div class="l1"><span class="nm">鼎龙股份</span><span class="cd">300054</span><span class="th">半导体材料/CMP龙头</span><span class="px">90.81</span><span class="bdg pass">过闸·最干净</span></div>
+<div class="spark">
+<div class="col"><div class="v up">+6.47</div><div class="plot"><div class="uh"><i style="height:15px"></i></div><div class="dh"></div></div><div class="d">6/9</div></div>
+<div class="col"><div class="v up">+2.81</div><div class="plot"><div class="uh"><i style="height:6px"></i></div><div class="dh"></div></div><div class="d">6/10</div></div>
+<div class="col"><div class="v up">+6.26</div><div class="plot"><div class="uh"><i style="height:14px"></i></div><div class="dh"></div></div><div class="d">6/11</div></div>
+<div class="col"><div class="v up">+4.66</div><div class="plot"><div class="uh"><i style="height:11px"></i></div><div class="dh"></div></div><div class="d">6/12</div></div>
+<div class="col"><div class="v up">+8.34</div><div class="plot"><div class="uh"><i style="height:19px"></i></div><div class="dh"></div></div><div class="d">6/15</div></div>
+<div class="col"><div class="v dn">-1.25</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:3px"></i></div></div><div class="d">6/16</div></div>
+<div class="col"><div class="v up">+7.59</div><div class="plot"><div class="uh"><i style="height:17px"></i></div><div class="dh"></div></div><div class="d">6/17</div></div>
+</div>
+<div class="l2">Q1归母2.51亿/扣非+75%/2025创新高。6/17随半导体材料大涨创新高，<span class="w">PE~80贵、近一周翻倍式急涨</span> → <b>终核=最高优先，但已大涨等回调</b></div></div>
+
+<div class="stk bl-gold"><div class="l1"><span class="nm">剑桥科技</span><span class="cd">603083</span><span class="th">光模块/CPO</span><span class="px">199.95</span><span class="bdg passw">过闸·压线</span></div>
+<div class="spark">
+<div class="col"><div class="v up">+3.55</div><div class="plot"><div class="uh"><i style="height:8px"></i></div><div class="dh"></div></div><div class="d">6/9</div></div>
+<div class="col"><div class="v dn">-2.75</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:6px"></i></div></div><div class="d">6/10</div></div>
+<div class="col"><div class="v dn">-2.79</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:6px"></i></div></div><div class="d">6/11</div></div>
+<div class="col"><div class="v up">+6.96</div><div class="plot"><div class="uh"><i style="height:16px"></i></div><div class="dh"></div></div><div class="d">6/12</div></div>
+<div class="col"><div class="v up">+10.00</div><div class="plot"><div class="uh"><i style="height:23px"></i></div><div class="dh"></div></div><div class="d">6/15</div></div>
+<div class="col"><div class="v dn">-1.60</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:4px"></i></div></div><div class="d">6/16</div></div>
+<div class="col"><div class="v up">+0.95</div><div class="plot"><div class="uh"><i style="height:2px"></i></div><div class="dh"></div></div><div class="d">6/17</div></div>
+</div>
+<div class="l2">Q1归母1.18亿(仅超闸18%)。6/15涨停后高位震荡滞涨。<span class="w">⚠️控股股东+高管密集减持、汇兑剧烈、CPO无营收</span> → 压后</div></div>
+
+<div class="tier-h t-blue"><span class="bar"></span><span class="nm">三档 · 防御压舱</span><span class="tag blue">高股息·拿得住·已持有</span></div>
+
+<div class="stk bl-blue"><div class="l1"><span class="nm">长江电力</span><span class="cd">600900</span><span class="th">水电/高股息</span><span class="px">26.99</span><span class="bdg pass">持有·挂移动止盈</span></div>
+<div class="spark">
+<div class="col"><div class="v up">+0.44</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">6/9</div></div>
+<div class="col"><div class="v up">+0.22</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">6/10</div></div>
+<div class="col"><div class="v up">+0.72</div><div class="plot"><div class="uh"><i style="height:2px"></i></div><div class="dh"></div></div><div class="d">6/11</div></div>
+<div class="col"><div class="v up">+1.40</div><div class="plot"><div class="uh"><i style="height:3px"></i></div><div class="dh"></div></div><div class="d">6/12</div></div>
+<div class="col"><div class="v dn">-2.51</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:6px"></i></div></div><div class="d">6/15</div></div>
+<div class="col"><div class="v dn">-1.38</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:3px"></i></div></div><div class="d">6/16</div></div>
+<div class="col"><div class="v dn">-0.74</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:2px"></i></div></div><div class="d">6/17</div></div>
+</div>
+<div class="l2">风险偏好回升、资金从防御流向科技成长 → 进攻日相对落后属正常，<b>压舱角色不变，移动止盈持有</b></div></div>
+
+<div class="tier-h t-faint"><span class="bar"></span><span class="nm">规避池 · 含持仓</span><span class="tag gray">不参与·规避≠看空</span></div>
+<div class="tnote">雅克002409/康强002119/铜陵000630/隆华300263/宏昌603002 预核否决；宏昌6天4板·麦格米特连板属题材局,业绩否决不参与；海亮·彩虹·逸豪·永杉·和远 规避</div>
+
+<div class="stk bl-faint"><div class="l1"><span class="nm">中兴通讯</span><span class="cd">000063</span><span class="th">通信/AI下游(持仓)</span><span class="px" style="color:#1fbf75">37.40</span><span class="bdg fail">业绩否决</span></div>
+<div class="spark">
+<div class="col"><div class="v up">+6.33</div><div class="plot"><div class="uh"><i style="height:15px"></i></div><div class="dh"></div></div><div class="d">6/9</div></div>
+<div class="col"><div class="v dn">-1.84</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:4px"></i></div></div><div class="d">6/10</div></div>
+<div class="col"><div class="v dn">-1.59</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:4px"></i></div></div><div class="d">6/11</div></div>
+<div class="col"><div class="v dn">-3.86</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:9px"></i></div></div><div class="d">6/12</div></div>
+<div class="col"><div class="v up">+2.39</div><div class="plot"><div class="uh"><i style="height:5px"></i></div><div class="dh"></div></div><div class="d">6/15</div></div>
+<div class="col"><div class="v up">+2.10</div><div class="plot"><div class="uh"><i style="height:5px"></i></div><div class="dh"></div></div><div class="d">6/16</div></div>
+<div class="col"><div class="v dn">-1.58</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:4px"></i></div></div><div class="d">6/17</div></div>
+</div>
+<div class="l2">Q1归母-46.58%/扣非-52%/现金流转负。<span class="w">6/17半导体全面大涨它仍逆势收绿=业绩弱+独立走弱双印证 → 反弹离场窗口,别等</span></div></div>
+
+<div class="redline">
+<h3>🚨 三条红线</h3>
+<li><b>不追高</b>：6/17半导体涨停潮（深南涨停/中微+9%），追进＝把回调低位的便宜筹码换成"涨停板接盘"</li>
+<li><b>别再5天短炒</b>：近3月7笔清仓0胜率、平均持股5.1天、5只卖飞——问题是过度交易，不是选股</li>
+<li><b>退潮档解除≠满仓信号</b>：情绪回暖但买点只在回调；现金是你最好的持仓</li>
+</div>
+<footer>业绩为巨潮预核级，【过闸】下单前须本机原件终核 · 价位/最新%为6/17盘中14:06快照，收盘与龙虎榜需盘后刷新<br>纯静态·零JS·零外部依赖·离线可开 · 筛选≠买点，<b>不构成投资建议</b><br>端午休市6/19–6/21，6/22开市 · 先活下来，再谈赢</footer>
+</div>
+</body>
+</html>
