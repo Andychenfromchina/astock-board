@@ -64,6 +64,18 @@ h1{font-size:21px;font-weight:800;margin-top:5px;color:#dce8ff}
 .redline li{list-style:none;font-size:13px;color:#ffc9cc;padding:6px 0 6px 20px;position:relative;border-top:1px solid #2e171b}
 .redline li:first-child{border-top:none} .redline li:before{content:"⛔";position:absolute;left:0;top:6px;font-size:11px} .redline li b{color:#fff}
 footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-height:1.7;border-top:1px solid #2a323f;padding-top:13px}
+
+.todo{background:#10182a;border:1.5px solid #f2b347;border-radius:11px;padding:11px 13px;margin:14px 0 4px}
+.todo .hd2{font-size:12.5px;font-weight:800;color:#f2b347;margin-bottom:7px}
+.ti{font-size:13px;padding:6px 0;border-top:1px solid #1c2740;color:#cdd6e6}.ti.f{border-top:none}.ti b{color:#fff}
+.ti.urg{color:#ff8a8d}.ti.urg b{color:#ff5a5f}
+.score{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
+.score .sc{flex:1;min-width:84px;background:#1a1013;border:1px solid #3a1c22;border-radius:8px;padding:7px 9px;text-align:center}
+.score .sc .k{font-size:10px;color:#8893a5}.score .sc .v{font-size:15px;font-weight:800;margin-top:2px}
+.slbar{height:6px;background:#0c1322;border-radius:3px;margin-top:3px;overflow:hidden}
+.slbar i{display:block;height:100%;border-radius:3px;background:#1fbf75}
+.slbar.danger i{background:#ff5a5f;animation:blink 1s infinite}@keyframes blink{50%{opacity:.35}}
+.slrow{margin-top:8px}.slrow .lb{display:flex;justify-content:space-between;font-size:10px;color:#8893a5}
 </style>
 </head>
 <body>
@@ -87,6 +99,18 @@ footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-heigh
 </div>
 </div>
 
+<div class="score">
+<div class="sc"><div class="k">近10笔胜率</div><div class="v up">0%</div></div>
+<div class="sc"><div class="k">平均持股</div><div class="v nt">5.1天</div></div>
+<div class="sc"><div class="k">本月违纪</div><div class="v up">1次</div></div>
+<div class="sc"><div class="k">现金缓冲</div><div class="v nt">40%</div></div>
+</div>
+<div class="todo"><div class="hd2">📋 今日必做（开盘照执行·把"看"变"做"）</div>
+<div class="ti f">剑桥 +18.5% <b>反弹中分批止盈锁利·移动止损上移245·绝不加仓</b>（不加仓只是底线，止盈才是动作）</div>
+<div class="ti urg">长江 -4% <b>距26.0止损仅1.8%·破26无条件减/离场</b>（防御股不是用来扛单的）</div>
+<div class="ti">创元 <b>守19止损·T+1明日可卖·绝不补仓摊低</b>（已追高买入，别再加错）</div>
+<div class="ti">瑞芯微 +3.5% <b>持有看半导体延续·守175止损</b></div>
+</div>
 <div class="tier-h t-blue" style="margin-top:14px"><span class="bar"></span><span class="nm">实际持仓 · 4只</span><span class="tag blue">真实账户·非观察</span></div>
 
 <div class="hold">
@@ -108,6 +132,7 @@ footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-heigh
 <div class="col"><div class="v up">+2.86</div><div class="plot"><div class="uh"><i style="height:7px"></i></div><div class="dh"></div></div><div class="d">6/30</div></div>
 </div></div>
 <div style="display:flex;align-items:center;gap:6px;margin-top:1px"><span style="font-size:9px;color:#5c6675;flex-shrink:0;width:26px">月线</span><div class="spark" style="margin:3px 0;flex:1"><div class="col"><div class="v up">+23</div><div class="plot"><div class="uh"><i style="height:7px"></i></div><div class="dh"></div></div><div class="d">12月</div></div><div class="col"><div class="v dn">-15</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:5px"></i></div></div><div class="d">1月</div></div><div class="col"><div class="v dn">-9</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:3px"></i></div></div><div class="d">2月</div></div><div class="col"><div class="v dn">-2</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">3月</div></div><div class="col"><div class="v up">+72</div><div class="plot"><div class="uh"><i style="height:22px"></i></div><div class="dh"></div></div><div class="d">4月</div></div><div class="col"><div class="v up">+19</div><div class="plot"><div class="uh"><i style="height:6px"></i></div><div class="dh"></div></div><div class="d">5月</div></div><div class="col"><div class="v up">+22</div><div class="plot"><div class="uh"><i style="height:7px"></i></div><div class="dh"></div></div><div class="d">6月</div></div></div></div>
+<div class="slrow"><div class="lb"><span>距止损缓冲(止损245)</span><span style="color:#8893a5;font-weight:700">3.9%</span></div><div class="slbar"><i style="width:31%"></i></div></div>
 <div class="lvs">
 <span style="background:#13301f;color:#1fbf75">🎯 反弹是减仓窗口·分批止盈</span>
 <span style="background:#3a1a1c;color:#ff8a8d">🛑 移动止损上移至245(锁+14%)</span>
@@ -134,6 +159,7 @@ footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-heigh
 <div class="col"><div class="v up">+3.40</div><div class="plot"><div class="uh"><i style="height:11px"></i></div><div class="dh"></div></div><div class="d">6/30</div></div>
 </div></div>
 <div style="display:flex;align-items:center;gap:6px;margin-top:1px"><span style="font-size:9px;color:#5c6675;flex-shrink:0;width:26px">月线</span><div class="spark" style="margin:3px 0;flex:1"><div class="col"><div class="v dn">-3</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">12月</div></div><div class="col"><div class="v up">+7</div><div class="plot"><div class="uh"><i style="height:2px"></i></div><div class="dh"></div></div><div class="d">1月</div></div><div class="col"><div class="v dn">-6</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:2px"></i></div></div><div class="d">2月</div></div><div class="col"><div class="v dn">-15</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:5px"></i></div></div><div class="d">3月</div></div><div class="col"><div class="v up">+20</div><div class="plot"><div class="uh"><i style="height:6px"></i></div><div class="dh"></div></div><div class="d">4月</div></div><div class="col"><div class="v dn">-4</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">5月</div></div><div class="col"><div class="v up">+8</div><div class="plot"><div class="uh"><i style="height:2px"></i></div><div class="dh"></div></div><div class="d">6月</div></div></div></div>
+<div class="slrow"><div class="lb"><span>距止损缓冲(止损175)</span><span style="color:#8893a5;font-weight:700">7.1%</span></div><div class="slbar"><i style="width:57%"></i></div></div>
 <div class="lvs">
 <span style="background:#13301f;color:#1fbf75">📈 反弹转正·一档转强</span>
 <span style="background:#3a1a1c;color:#ff8a8d">🛑 止损175(距今-7.8%)</span>
@@ -146,6 +172,7 @@ footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-heigh
 <div class="hgrid"><div class="hc"><div class="k">持仓/可用</div><div class="v nt">500 / 0<span style="font-size:9px;color:#ff7a45">(锁)</span></div></div><div class="hc"><div class="k">成本</div><div class="v nt">20.541</div></div><div class="hc"><div class="k">现价(收盘)</div><div class="v up">20.63</div></div><div class="hc"><div class="k">盈亏(估)</div><div class="v up">+45 / +0.43%</div></div><div class="hc"><div class="k">个股仓位</div><div class="v nt">8.7%</div></div></div>
 <div style="display:flex;align-items:center;gap:6px"><span style="font-size:9px;color:#5c6675;flex-shrink:0;width:26px">日线</span><div class="spark" style="flex:1"><div class="col"><div class="v dn">-2.05</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:5px"></i></div></div><div class="d">6/22</div></div><div class="col"><div class="v up">+9.99</div><div class="plot"><div class="uh"><i style="height:23px"></i></div><div class="dh"></div></div><div class="d">6/23</div></div><div class="col"><div class="v dn">-0.18</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">6/24</div></div><div class="col"><div class="v up">+2.20</div><div class="plot"><div class="uh"><i style="height:5px"></i></div><div class="dh"></div></div><div class="d">6/25</div></div><div class="col"><div class="v up">+6.23</div><div class="plot"><div class="uh"><i style="height:14px"></i></div><div class="dh"></div></div><div class="d">6/26</div></div><div class="col"><div class="v up">+10.03</div><div class="plot"><div class="uh"><i style="height:23px"></i></div><div class="dh"></div></div><div class="d">6/29</div></div><div class="col"><div class="v up">+2.74</div><div class="plot"><div class="uh"><i style="height:6px"></i></div><div class="dh"></div></div><div class="d">6/30</div></div></div></div>
 <div style="display:flex;align-items:center;gap:6px;margin-top:1px"><span style="font-size:9px;color:#5c6675;flex-shrink:0;width:26px">月线</span><div class="spark" style="margin:3px 0;flex:1"><div class="col"><div class="v up">+36</div><div class="plot"><div class="uh"><i style="height:11px"></i></div><div class="dh"></div></div><div class="d">12月</div></div><div class="col"><div class="v dn">-0</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">1月</div></div><div class="col"><div class="v up">+5</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">2月</div></div><div class="col"><div class="v dn">-14</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:4px"></i></div></div><div class="d">3月</div></div><div class="col"><div class="v up">+23</div><div class="plot"><div class="uh"><i style="height:7px"></i></div><div class="dh"></div></div><div class="d">4月</div></div><div class="col"><div class="v dn">-3</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">5月</div></div><div class="col"><div class="v up">+33</div><div class="plot"><div class="uh"><i style="height:10px"></i></div><div class="dh"></div></div><div class="d">6月</div></div></div></div>
+<div class="slrow"><div class="lb"><span>距止损缓冲(止损19)</span><span style="color:#8893a5;font-weight:700">7.9%</span></div><div class="slbar"><i style="width:63%"></i></div></div>
 <div class="lvs"><span style="background:#3a1a1c;color:#ff8a8d">🛑 止损19(前平台/约-7.5%)</span><span style="background:#332708;color:#f2b347">⚠️买在20.5高于看板回踩17-18建议</span></div>
 <div class="hnote">✅6/30买入二档创元(石英/环保,Q1扣非+33.6%/归母1.24亿,主板)。<b>但买在20.5高位</b>(高于看板"回踩17-18"建议、连板后偏追高)、纯度中(蹭石英);小仓8.7%可控。<b>守19止损、不补仓</b>,T+1明日可卖。</div></div>
 
@@ -168,6 +195,7 @@ footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-heigh
 <div class="col"><div class="v dn">-1.30</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:4px"></i></div></div><div class="d">6/30</div></div>
 </div></div>
 <div style="display:flex;align-items:center;gap:6px;margin-top:1px"><span style="font-size:9px;color:#5c6675;flex-shrink:0;width:26px">月线</span><div class="spark" style="margin:3px 0;flex:1"><div class="col"><div class="v dn">-3</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">12月</div></div><div class="col"><div class="v dn">-3</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">1月</div></div><div class="col"><div class="v dn">-0</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">2月</div></div><div class="col"><div class="v up">+4</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">3月</div></div><div class="col"><div class="v up">+1</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">4月</div></div><div class="col"><div class="v up">+2</div><div class="plot"><div class="uh"><i style="height:1px"></i></div><div class="dh"></div></div><div class="d">5月</div></div><div class="col"><div class="v dn">-5</div><div class="plot"><div class="uh"></div><div class="dh"><i style="height:1px"></i></div></div><div class="d">6月</div></div></div></div>
+<div class="slrow"><div class="lb"><span>距止损缓冲(止损26.0)</span><span style="color:#ff5a5f;font-weight:700">1.8%</span></div><div class="slbar danger"><i style="width:14%"></i></div></div>
 <div class="lvs">
 <span style="background:#3a1a1c;color:#ff8a8d">🛑 止损底线 26.0(距今-1.6%)</span>
 <span style="background:#0e2740;color:#7fb4f0">📈 收复27.45(MA20)回防御常态</span>
