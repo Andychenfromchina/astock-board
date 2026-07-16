@@ -88,7 +88,7 @@ footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-heigh
 <body>
 <header>
 <div class="kicker">POOL DASHBOARD · 真实账户版</div>
-<h1>AI量化选股实操盘 <span style="font-size:.62em;font-weight:600;color:#8893a5;white-space:nowrap">7月16日16点</span></h1>
+<h1>AI量化选股实操盘 <span id="livetime" style="font-size:.62em;font-weight:600;color:#8893a5;white-space:nowrap">7月16日16点</span></h1>
 <div class="upd">⏱ 最近更新：2026-07-16 收盘16:14（瑞芯微炸板收+5.58·止损上移215·沪电第四天不成熟·尾盘再跳水·估算）</div>
 <div class="date">走势窗口 7/8–7/16（红涨绿跌）· 只含主板/创业板 · 每股日线7日+月线近7月双柱 · 行情7/16收盘</div>
 <div class="status">⚠️周四收盘:瑞芯微炸板(涨停231.55没封住,收222.24/+5.58%)——永和剧本推进一步,<b>止损正式上移205→215(锁+18%),缓冲仅3.3%</b>·沪电量比1.02终于全缩量但收136.72又破138=第四天不成熟·大盘第三次尾盘跳水,上证-1.85失守3900——账户当日仍+910为正</div>
@@ -329,5 +329,11 @@ footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-heigh
 </div>
 <footer>⏱ 最近更新 2026-07-16 收盘16:14(收盘定版) · 只含主板/创业板 · 持仓成本据券商、盈亏按7/16收盘价估算(权威以券商APP为准)<br>业绩巨潮预核级,下单前本机原件终核 · 纯静态零依赖 · 筛选≠买点,<b>不构成投资建议</b> · 先活下来,再谈赢</footer>
 </div>
+<script>
+(function(){function t(){var d=new Date();var s=(d.getMonth()+1)+"\u6708"+d.getDate()+"\u65e5"+d.getHours()+"\u70b9";
+document.title="AI\u91cf\u5316\u9009\u80a1\u5b9e\u64cd\u76d8 "+s;
+var e=document.getElementById("livetime");if(e)e.textContent=s;}
+t();setInterval(t,60000);})();
+</script>
 </body>
 </html>
