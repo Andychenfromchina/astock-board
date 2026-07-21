@@ -6,14 +6,15 @@
 <title>AI量化选股实操盘 7月21日22点</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#0e131c;color:#e9eef7;font-size:15px;line-height:1.5;padding-bottom:80px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#0e131c;color:#e9eef7;font-size:15px;line-height:1.5;padding-bottom:80px;overflow-wrap:break-word}
 .wrap{max-width:720px;margin:0 auto;padding:0 13px}
 header{padding:20px 14px 13px;text-align:center;background:#0b0f17;border-bottom:1px solid #2a323f}
+header>*{max-width:720px;margin-left:auto;margin-right:auto}
 .kicker{font-size:11px;letter-spacing:2px;color:#f2b347;font-weight:700}
 h1{font-size:21px;font-weight:800;margin-top:5px;color:#dce8ff}
-.upd{display:inline-block;margin-top:7px;font-size:11.5px;color:#1fbf75;background:#0e1f17;border:1px solid #1c3a2a;border-radius:6px;padding:3px 10px;font-weight:700}
+.upd{display:inline-block;max-width:min(720px,100%);overflow-wrap:anywhere;margin-top:7px;font-size:11.5px;color:#1fbf75;background:#0e1f17;border:1px solid #1c3a2a;border-radius:6px;padding:3px 10px;font-weight:700}
 .date{font-size:12px;color:#8893a5;margin-top:6px}
-.status{display:inline-block;margin-top:11px;padding:6px 13px;border-radius:8px;font-size:12.5px;font-weight:700;background:#13301f;color:#1fbf75;border:1px solid #1c5238}
+.status{display:inline-block;max-width:min(720px,100%);overflow-wrap:anywhere;margin-top:11px;padding:6px 13px;border-radius:8px;font-size:12.5px;font-weight:700;background:#13301f;color:#1fbf75;border:1px solid #1c5238}
 .acct{margin:14px 0 4px;background:#10182a;border:1px solid #243250;border-radius:11px;padding:13px 14px}
 .acct .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
 .acct .top .t{font-size:13px;font-weight:800;color:#9cc2ff} .acct .top .pos{font-size:11px;color:#8893a5}
@@ -48,7 +49,7 @@ h1{font-size:21px;font-weight:800;margin-top:5px;color:#dce8ff}
 .px{font-size:12px;font-weight:700;color:#ff5a5f}
 .bdg{margin-left:auto;font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px}
 .bdg.pass{background:#13301f;color:#1fbf75} .bdg.passw{background:#332708;color:#f2b347} .bdg.fail{background:#3a1a1c;color:#ff5a5f} .bdg.hot{background:#3a1a1c;color:#ff5a5f} .bdg.own{background:#0e2740;color:#4f9cf9}
-.l2{font-size:12.5px;color:#8893a5;margin-top:5px} .l2 b{color:#e9eef7} .l2 .w{color:#ff7a45}
+.l2{font-size:12.5px;color:#8893a5;margin-top:5px;min-width:0} .l2 b{color:#e9eef7} .l2 .w{color:#ff7a45}
 .spark{display:flex;gap:4px;margin:9px 0 2px}
 .col{flex:1;display:flex;flex-direction:column;align-items:center}
 .v{font-size:8.5px;font-weight:700;height:12px;line-height:12px}
@@ -64,6 +65,7 @@ h1{font-size:21px;font-weight:800;margin-top:5px;color:#dce8ff}
 .redline li{list-style:none;font-size:13px;color:#ffc9cc;padding:6px 0 6px 20px;position:relative;border-top:1px solid #2e171b}
 .redline li:first-child{border-top:none} .redline li:before{content:"⛔";position:absolute;left:0;top:6px;font-size:11px} .redline li b{color:#fff}
 footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-height:1.7;border-top:1px solid #2a323f;padding-top:13px}
+
 
 .todo{background:#10182a;border:1.5px solid #f2b347;border-radius:11px;padding:11px 13px;margin:14px 0 4px}
 .todo .hd2{font-size:12.5px;font-weight:800;color:#f2b347;margin-bottom:7px}
@@ -83,6 +85,35 @@ footer{margin-top:20px;font-size:11px;color:#5c6675;text-align:center;line-heigh
 .m20t .bd{position:absolute;top:0;height:100%;left:34.3%;width:17.1%;background:#e0a83a;opacity:.28;border-radius:2px}
 .m20t .ct{position:absolute;top:-2px;left:42.9%;height:11px;width:1.5px;background:#5c6675}
 .m20t .mk{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 1.5px #0c1322}
+/* ---- 响应式适配(2026-07-21新增) ---- */
+/* 手机:消除"3+1""4+1"式孤儿行,整行均分;正文与状态条略缩 */
+@media (max-width:560px){
+  header{padding:16px 11px 11px}
+  h1{font-size:19px}
+  .upd{font-size:11px;padding:3px 8px}
+  .status{font-size:12px;padding:6px 10px;line-height:1.55}
+  .date{font-size:11.5px}
+  .wrap{padding:0 10px}
+  .score .sc{min-width:calc(50% - 4px)}      /* 4项 → 2+2,不留孤儿 */
+  .hgrid .hc{min-width:calc(33.333% - 5px)}  /* 5项 → 3+2 */
+  .acct{padding:11px 11px}
+  .stk{padding:10px 11px}
+  .acct .top{flex-direction:column;align-items:flex-start;gap:3px}   /* 标题与仓位改上下排,避免挤压换行 */
+  .tier-h{gap:7px;margin:16px 0 8px}
+}
+/* 小屏:柱状图列距收紧,保证"+10.00"这类最宽读数不挤压 */
+@media (max-width:400px){
+  /* 释放候选行的行内固定宽度,否则 78+54px 挤爆 320px 视口(实测溢出35px) */
+  [style*="width:78px"]{width:auto!important;min-width:52px}
+  [style*="width:54px"]{width:auto!important}
+  .spark{gap:2px}
+  .spark .v{font-size:8px}
+  .spark .d{font-size:8.5px}
+  .cell{min-width:calc(50% - 4px)}           /* 6项 → 2+2+2 */
+  .l2,.tnote{font-size:11.5px}
+  .ti{font-size:12.5px}
+}
+/* 打印/极宽屏:内容列已由 header>* 与 .wrap 同锁 720px,无需额外处理 */
 </style>
 </head>
 <body>
